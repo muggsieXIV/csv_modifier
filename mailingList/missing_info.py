@@ -26,4 +26,3 @@ with open('missing_info.csv', mode='w') as csv_file:
     writer.writeheader()
     for data in missing_info:
         writer.writerow({'id': data[0], 'first': data[1], 'last': data[2], 'address': data[3], 'address_two': data[4], 'city': data[5], 'state': data[6], 'zip': data[7], 'phone': data[8], 'email': data[9]})
-

@@ -28,3 +28,4 @@ with open('filtered.csv', mode='w') as csv_file:
     writer.writeheader()
     for data in final:
         writer.writerow({'email': data})
+

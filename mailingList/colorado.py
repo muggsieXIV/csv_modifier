@@ -2,31 +2,45 @@ import csv
 
 final = []
 
-with open("final_test.txt", newline='') as csvfile:
+with open("APVH_2022-EOY.txt", newline='') as csvfile:
     rows = csv.reader(csvfile, delimiter=',')
     qued = [] 
 
+
+    def merge_dups(eval, eval2):
+        eval = {
+            ''
+        }
+
     def FindDoubles(eval):
-        eval_name = eval[1].lower() + eval[2].lower()
+        eval_family_name = eval[2].lower() 
+        eval_full_name = eval[1].lower() + eval[2].lower()
         eval_address = eval[3].lower() + eval[5].lower() + eval[6].lower() + eval[7].lower()
         eval_phone = eval[8]
         eval_email = eval[9].lower()
         eval_zip = eval[7]
-
         set_row = eval
-        print(eval)
 
         for row in qued:
-            if len(eval_name) == row[1].lower() + row[2].lower():
+            if eval_full_name == row[1].lower() + row[2].lower():
                 if len(eval_address) <= len(row[3]) + len(row[5]) + len(row[6]) + len(row[7]):
                     if len(eval_phone) <= len(row[8]):
                         if len(eval_email) <= len(row[9]):
                             set_row = row 
                             print(row)
-        
+            
+            elif eval_family_name == row[2].lower():
+                if eval_address == eval[3].lower() + eval[5].lower() + eval[6].lower() + eval[7].lower():
+                    print('Found duplicate client')
+                    print(eval) 
+                    print(row)
+                    print('=========')
+                    print('=======')
+                    
+
         for join in qued:
             if len(eval_zip) >= 5:
-                if len(eval_name) != row[1].lower() + row[2].lower():
+                if len(eval_full_name) != row[1].lower() + row[2].lower():
                     if eval_address == row[3].lower() + row[5].lower() + row[6].lower() + row[7].lower():
                         first_names = eval[1].lower() + ' ' + row[1].lower()
                         last_names = eval[2].lower() + ' ' + eval[2].lower()
